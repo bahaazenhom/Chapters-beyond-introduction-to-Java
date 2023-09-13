@@ -12,8 +12,8 @@ public class ParallelMergeSort {
 
     public static void main(String[] args) {
         final int SIZE = 7000000;
-        Integer[] list1 = new Integer[SIZE];
-        Integer[] list2 = new Integer[SIZE];
+        int[] list1 = new int[SIZE];
+        int[] list2 = new int[SIZE];
         for (int i = 0; i < list1.length; i++)
             list1[i] = list2[i] = (int) (Math.random() * 10000000);
 
@@ -32,53 +32,53 @@ public class ParallelMergeSort {
         System.out.println("\nSequential time is " + (endTime - startTime) + " milliseconds");
     }
 
-    public static <E extends Comparable<E>> void parallelMergeSort(E[] arr) {
+    public static void parallelMergeSort(int[] arr) {
         RecursiveAction mainTask = new SortTask(arr);
         ForkJoinPool pool = new ForkJoinPool();
         pool.invoke(mainTask);
     }
 
-    private static  class SortTask<E extends Comparable<E>> extends RecursiveAction {
-        private final int THRESHOLD = 500;
-        private E[] arr;
+    private static class SortTask extends RecursiveAction {
+        private final int THRintSHOLD = 500;
+        private int[] arr;
 
-        SortTask(E[] arr) {
+        SortTask(int[] arr) {
             this.arr = arr;
         }
 
         @Override
         protected void compute() {
-            if (arr.length < THRESHOLD) Arrays.sort(arr);
+            if (arr.length < THRintSHOLD) Arrays.sort(arr);
             else {
-                E[] firstHalf = (E[]) new Object[arr.length / 2];
+                int[] firstHalf = new int[arr.length / 2];
                 System.arraycopy(arr, 0, firstHalf, 0, arr.length / 2);
                 int secondHalfLength = arr.length - arr.length / 2;
-                E[] secondHalf = (E[]) new Object[secondHalfLength];
+                int[] secondHalf = new int[secondHalfLength];
                 System.arraycopy(arr, arr.length / 2, secondHalf, 0, secondHalfLength);
-                SortTask task1=new SortTask((E[]) firstHalf);
-                SortTask task2=new SortTask((E[])secondHalf);
+                SortTask task1 = new SortTask((int[]) firstHalf);
+                SortTask task2 = new SortTask((int[]) secondHalf);
 
               /*  task1.fork();task2.fork();
                 task1.join();task2.join();*/
 
-               // task1.fork();task2.compute();// *in some cases* when we use this approach (forking the first task and compute the second directly)
+                // task1.fork();task2.compute();// *in some cases* when we use this approach (forking the first task and compute the second directly)
                 // it will increase the program performance comparing to using the regular approach
                 // that happens because of it have less thread coordination overhead because it minimizes synchronization and waiting
 
-                invokeAll(task1,task2);
-                merge(firstHalf, secondHalf  , temp);
+                invokeAll(task1, task2);
+                merge(firstHalf, secondHalf, temp);
 
             }
         }
     }
 
-    public static <E extends Comparable<E>> void merge(E[] arr1, E[] arr2, Object[] temp) {
+    public static void merge(int[] arr1, int[] arr2, Object[] temp) {
         int current1 = 0; // Current index in arr1
         int current2 = 0; // Current index in arr2
         int current3 = 0; // Current index in temp
         temp = new Object[arr1.length + arr2.length];
         while (current1 < arr1.length && current2 < arr2.length) {
-            if ((arr1[current1]).compareTo(arr2[current2])<0)
+            if ((arr1[current1]) < (arr2[current2]))
                 temp[current3++] = arr1[current1++];
             else
                 temp[current3++] = arr2[current2++];
