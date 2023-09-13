@@ -39,7 +39,7 @@ public class ParallelMergeSort {
     }
 
     private static class SortTask extends RecursiveAction {
-        private final int THRintSHOLD = 500;
+        private final int THRESHOLD = 500;
         private int[] arr;
 
         SortTask(int[] arr) {
@@ -48,7 +48,7 @@ public class ParallelMergeSort {
 
         @Override
         protected void compute() {
-            if (arr.length < THRintSHOLD) Arrays.sort(arr);
+            if (arr.length < THRESHOLD) Arrays.sort(arr);
             else {
                 int[] firstHalf = new int[arr.length / 2];
                 System.arraycopy(arr, 0, firstHalf, 0, arr.length / 2);
