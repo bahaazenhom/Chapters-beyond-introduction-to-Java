@@ -25,7 +25,7 @@ public class ParallelSum {
     }
     static class Intialize extends RecursiveTask<Double> {
         double[] arr;
-        private int THRESHOLD = 100;
+        private final int THRESHOLD = 100;
         int low,high;
         public Intialize(double[] arr,int low,int high) {
             this.arr=arr;

@@ -25,9 +25,9 @@ public class ParallelMax {
 
     private static class MaxTask extends RecursiveTask<Integer> {
         private final static int THRESHOLD = 5;
-        private int left;
-        private int right;
-        private int[] arr;
+        private final int left;
+        private final int right;
+        private final int[] arr;
 
         MaxTask(int[] arr, int left, int rigth) {
             this.arr = arr;

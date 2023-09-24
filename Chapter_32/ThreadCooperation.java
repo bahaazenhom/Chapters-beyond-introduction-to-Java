@@ -44,8 +44,8 @@ public class ThreadCooperation {
         }
     }
     private static class Account{
-        private static Lock lock=new ReentrantLock();// Here we are using Reentrant Locking to control our threads.
-        private static Condition condition=lock.newCondition();// we created a new condition to control the threads.
+        private static final Lock lock=new ReentrantLock();// Here we are using Reentrant Locking to control our threads.
+        private static final Condition condition=lock.newCondition();// we created a new condition to control the threads.
         private int balance = 0;
         public int getBalance(){
             return balance;

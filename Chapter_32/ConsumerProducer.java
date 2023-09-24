@@ -12,7 +12,7 @@ import java.util.concurrent.locks.ReentrantLock;
 // --- Introduction to java's beyond chapters | Chapter 32: Multithreading and Parallel Programming P.1291 ---
 
 public class ConsumerProducer {
-    private static Buffer buffer=new Buffer();
+    private static final Buffer buffer=new Buffer();
 
     public static void main(String[] argus) throws IOException, InterruptedException {
         ExecutorService executorService=Executors.newFixedThreadPool(2);
@@ -53,10 +53,10 @@ public class ConsumerProducer {
     }
     private static class Buffer {
         private static final int capacity = 1;
-        private Queue<Integer> queue=new ArrayDeque<>();
-        private static Lock lock=new ReentrantLock();
-        private static Condition notEmpty=lock.newCondition();
-        private static Condition notFull=lock.newCondition();
+        private final Queue<Integer> queue=new ArrayDeque<>();
+        private static final Lock lock=new ReentrantLock();
+        private static final Condition notEmpty=lock.newCondition();
+        private static final Condition notFull=lock.newCondition();
         public int getCapacity(){
             return queue.size();
         }
