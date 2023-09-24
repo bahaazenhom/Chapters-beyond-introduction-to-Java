@@ -38,8 +38,13 @@ public class ParallelMergeSort {
         pool.invoke(mainTask);
     }
 
+<<<<<<< HEAD
     private static  class SortTask extends RecursiveAction {
         private final int THRintSHOLD = 500;
+=======
+    private static class SortTask extends RecursiveAction {
+        private final int THRESHOLD = 500;
+>>>>>>> eefcd187873e5aa8ef3cbbccf1b8cd6ff8933360
         private int[] arr;
 
         SortTask(int[] arr) {
@@ -55,18 +60,23 @@ public class ParallelMergeSort {
                 int secondHalfLength = arr.length - arr.length / 2;
                 int[] secondHalf = new int[secondHalfLength];
                 System.arraycopy(arr, arr.length / 2, secondHalf, 0, secondHalfLength);
+<<<<<<< HEAD
                 SortTask task1=new SortTask((int[]) firstHalf);
                 SortTask task2=new SortTask((int[])secondHalf);
+=======
+                SortTask task1 = new SortTask((int[]) firstHalf);
+                SortTask task2 = new SortTask((int[]) secondHalf);
+>>>>>>> eefcd187873e5aa8ef3cbbccf1b8cd6ff8933360
 
               /*  task1.fork();task2.fork();
                 task1.join();task2.join();*/
 
-               // task1.fork();task2.compute();// *in some cases* when we use this approach (forking the first task and compute the second directly)
+                // task1.fork();task2.compute();// *in some cases* when we use this approach (forking the first task and compute the second directly)
                 // it will increase the program performance comparing to using the regular approach
                 // that happens because of it have less thread coordination overhead because it minimizes synchronization and waiting
 
-                invokeAll(task1,task2);
-                merge(firstHalf, secondHalf  , temp);
+                invokeAll(task1, task2);
+                merge(firstHalf, secondHalf, temp);
 
             }
         }
@@ -78,7 +88,11 @@ public class ParallelMergeSort {
         int current3 = 0; // Current index in temp
         temp = new Object[arr1.length + arr2.length];
         while (current1 < arr1.length && current2 < arr2.length) {
+<<<<<<< HEAD
             if ((arr1[current1])<(arr2[current2]))
+=======
+            if ((arr1[current1]) < (arr2[current2]))
+>>>>>>> eefcd187873e5aa8ef3cbbccf1b8cd6ff8933360
                 temp[current3++] = arr1[current1++];
             else
                 temp[current3++] = arr2[current2++];
