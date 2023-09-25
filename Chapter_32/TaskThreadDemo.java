@@ -21,6 +21,7 @@ public class TaskThreadDemo {
 
 
     }
+
     static class PrintChar implements Runnable {// the class has to implement the interface Runnable and we have to override the method run().
         char c;
         int numberOfTimes;

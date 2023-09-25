@@ -5,9 +5,9 @@ import java.util.concurrent.ForkJoinPool;
 
 public class MaxFinder extends RecursiveTask<Integer> {
     private static final int THRESHOLD = 5; // Threshold for splitting the task
-    private final int[] array;
-    private final int start;
-    private final int end;
+    private int[] array;
+    private int start;
+    private int end;
 
     public MaxFinder(int[] array, int start, int end) {
         this.array = array;

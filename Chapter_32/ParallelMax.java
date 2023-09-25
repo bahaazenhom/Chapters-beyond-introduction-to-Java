@@ -25,9 +25,9 @@ public class ParallelMax {
 
     private static class MaxTask extends RecursiveTask<Integer> {
         private final static int THRESHOLD = 5;
-        private final int left;
-        private final int right;
-        private final int[] arr;
+        private int left;
+        private int right;
+        private int[] arr;
 
         MaxTask(int[] arr, int left, int rigth) {
             this.arr = arr;
@@ -45,10 +45,11 @@ public class ParallelMax {
                 int mid = (right + left) / 2;
                 MaxTask task1 = new MaxTask(arr, left, mid);
                 MaxTask task2 = new MaxTask(arr, mid, right);
-                task1.fork();task2.fork();
-                int r=task2.join();
-                int l= task1.join();
-                return Math.max(r,l);
+                task1.fork();
+                task2.fork();
+                int r = task2.join();
+                int l = task1.join();
+                return Math.max(r, l);
             }
         }
     }
