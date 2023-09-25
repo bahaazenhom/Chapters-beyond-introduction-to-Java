@@ -11,11 +11,7 @@ public class StudentClient {
             Socket socket = new Socket("localhost", 8000);
             ObjectOutputStream toServer = new ObjectOutputStream(socket.getOutputStream());
             while (true) {
-                String name = input.next(),
-                        street = input.next(),
-                        city = input.next(),
-                        state = input.next(),
-                        zip = input.next();
+                String name = input.next(), street = input.next(), city = input.next(), state = input.next(), zip = input.next();
                 StudentAddress studentAddress = new StudentAddress(name, street, city, state, zip);
                 toServer.writeObject(studentAddress);
             }
