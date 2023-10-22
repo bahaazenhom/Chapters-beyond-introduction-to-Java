@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="jakarta.faces.html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Display Student</title>
+         <h:outputStylesheet name="resources/tablestyle.css"/>
+    </h:head>
+    <h:body>
+        <h:form>
+            <h:outputLabel value="Choose a Course: "/>
+            <h:selectOneMenu value="#{courseName.choice}">
+                <f:selectItems  value="#{courseName.titles}"/>
+            </h:selectOneMenu>
+            <h:commandButton style="margin-left: 20px"
+                             value="Display Student"/>
+            <br/><br/>
+
+            <h:dataTable value="#{courseName.students}" var="student" ><!-- the table will iterate for every student object and assgint its values to each columns as we specify -->
+                rowClasses="oddTableRow ,evenTableRow"
+                headerClass="tableHeader"
+                styleClass="table">
+                <h:column>
+                    <f:facet name="header">SSN</f:facet><!-- Header name -->
+                        #{student.ssn}
+                </h:column>
+                <br/>
+                <h:column>
+                    <f:facet name="header">First Name</f:facet><!-- Header name -->
+                        #{student.firstName}
+                </h:column>
+                <br/>
+                <h:column>
+                    <f:facet name="header">MI</f:facet><!-- Header name -->
+                        #{student.mi}
+                </h:column>
+                <br/>
+                <h:column>
+                    <f:facet name="header">Last Name</f:facet><!-- Header name -->
+                        #{student.lastName}
+                </h:column>
+                <br/>
+                <h:column>
+                    <f:facet name="header">Phone</f:facet><!-- Header name -->
+                        #{student.phone}
+                </h:column>
+                <br/>
+                <h:column>
+                    <f:facet name="header">Birth Date</f:facet><!-- Header name -->
+                        #{student.birthDate}
+                </h:column>
+                <br/><br/>
+                <h:column>
+                    <f:facet name="header">Dept</f:facet><!-- Header name -->
+                        #{student.deptId}
+                </h:column>
+            </h:dataTable>
+        </h:form>
+    </h:body>
+</html>

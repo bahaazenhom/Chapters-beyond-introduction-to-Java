@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit this template
+-->
+<html>
+    <head>
+        <title>DB Login</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <form method="post" action="DBLoginInitialization.jsp">
+            JDBC URL
+            <select name="url" size ="1">
+                <option>jdbc:odbc:ExampleMDBDataSource</option>
+                <option>jdbc:mysql://localhost/javabook</option>
+                <option>jdbc:oracle:thin:@liang.armstrong.edu:1521:orcl</option>
+            </select><br/><br/>
+            Username <input name="username" /><br/><br/>
+            Password <input name="password" /><br/><br/>
+            <input type="submit" name="Submit" value="Login"/>
+            <input type="reset" value="Reset"/>
+        </form>
+    </body>
+</html>
